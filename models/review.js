@@ -6,7 +6,7 @@ const reviewSchema = new Schema(
   {
     appuserId: {
       type: ObjectId,
-      required: true
+      required: true,
     },
     text: {
       type: String,

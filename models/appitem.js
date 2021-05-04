@@ -12,11 +12,11 @@ const appitemSchema = new Schema(
       required: true,
     },
     genreTags: {
-      type: [String],
+      type: [String], 
       required: true
     },
     images: {
-        type: [String]
+        type: [String] //urls of images
     },
     description: {
         type: String,

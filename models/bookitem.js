@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema; //this is actually a ctor that creates a new schema
+const ObjectId = Schema.Types.ObjectId;
 
 const bookitemSchema = new Schema(
   {
@@ -26,7 +27,7 @@ const bookitemSchema = new Schema(
       type: Number,
     },
     reviews: {
-      type: [String], //ids of reviews
+      type: [ObjectId], //ids of reviews
     },
   },
   { timestamps: true }
