@@ -12,6 +12,11 @@ const appuserSchema = new Schema(
       type: String,
       required: true,
     },
+    image: {
+      type: String,
+      default: ''
+    }
+    ,
     library: {
       type: [ObjectId], //ids 
     },

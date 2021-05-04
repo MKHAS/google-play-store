@@ -8,6 +8,10 @@ const bookitemSchema = new Schema(
       type: String,
       required: true,
     },
+    authors: {
+      type: String,
+      required: true,
+    },
     price: {
       type: String,
       required: true,
