@@ -6,6 +6,7 @@ const Bookitem = require('./models/bookitem.js');
 const Gameitem = require('./models/gameitem.js');
 const Movieitem = require('./models/movieitem.js');
 const Review = require('./models/review.js');
+const Petition = require('../petition.js');
 
 const app = express();
 
@@ -33,10 +34,10 @@ app.use((req, res, next) => {
 });
 
 //get one user
-app.get('/get-user/:id', (req, res)=>{
+app.get('/get-user/:id', (req, res) => {
   Appuser.findById(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -100,14 +101,24 @@ app.get('/all-apps', (req, res) => {
     });
 });
 // get one app
-app.get('/get-app/:id', (req, res)=>{
+app.get('/get-app/:id', (req, res) => {
   Appitem.findById(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
     });
+});
+// update app
+app.post('/update-app/:id', (req, res) => {
+  var newapp = req.body;
+  var id = req.params.id;
+  Appitem.findByIdAndUpdate(id, newapp)
+  .then((result) => {
+    res.header('Content-Type', 'application/json');
+    res.send(result);
+  });
 });
 
 //get all books
@@ -123,10 +134,10 @@ app.get('/all-books', (req, res) => {
     });
 });
 // get one book
-app.get('/get-book/:id', (req, res)=>{
+app.get('/get-book/:id', (req, res) => {
   Bookitem.findById(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -146,10 +157,10 @@ app.get('/all-games', (req, res) => {
     });
 });
 //get one game
-app.get('/get-game/:id', (req, res)=>{
+app.get('/get-game/:id', (req, res) => {
   Gameitem.findById(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -169,10 +180,10 @@ app.get('/all-movies', (req, res) => {
     });
 });
 //get one movie
-app.get('/get-movie/:id', (req, res)=>{
+app.get('/get-movie/:id', (req, res) => {
   Movieitem.findById(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -180,10 +191,10 @@ app.get('/get-movie/:id', (req, res)=>{
 });
 
 //update app
-app.get('/update-app/:id', (req, res)=>{
+app.get('/update-app/:id', (req, res) => {
   Appitem.findByIdAndUpdate(req.params.id)
     .then((result) => {
-      res.send(result)
+      res.send(result);
     })
     .catch((err) => {
       console.log(err);
