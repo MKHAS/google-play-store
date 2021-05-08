@@ -60,7 +60,7 @@ app.get('/signup', (req, res) => {
   res.render('create', { title: 'Sign Up' });
 });
 
-// DB routes
+// Endpoints
 
 //all users
 app.get('/all-users', (req, res) => {
@@ -190,9 +190,32 @@ app.get('/get-movie/:id', (req, res) => {
     });
 });
 
-//update app
-app.get('/update-app/:id', (req, res) => {
-  Appitem.findByIdAndUpdate(req.params.id)
+
+//update game
+app.get('/update-game/:id', (req, res) => {
+  Gameitem.findByIdAndUpdate(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//update movie
+app.get('/update-movie/:id', (req, res) => {
+  Movieitem.findByIdAndUpdate(req.params.id)
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//update book
+app.get('/update-book/:id', (req, res) => {
+  Bookitem.findByIdAndUpdate(req.params.id)
     .then((result) => {
       res.send(result);
     })
