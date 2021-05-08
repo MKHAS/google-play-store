@@ -20,7 +20,7 @@ const appuserSchema = new Schema(
     library: {
       type: [ObjectId], //ids 
     },
-    reviews: {
+    wishlist: {
       type: [ObjectId],
     },
   },

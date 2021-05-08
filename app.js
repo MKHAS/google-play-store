@@ -1,6 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Appuser = require('./models/appuser.js');
+const Appitem = require('./models/appitem.js');
+const Bookitem = require('./models/bookitem.js');
+const Gameitem = require('./models/gameitem.js');
+const Movieitem = require('./models/movieitem.js');
+const Review = require('./models/review.js');
 
 const app = express();
 
@@ -27,34 +32,16 @@ app.use((req, res, next) => {
   next();
 });
 
-//adding users
-// app.get('/signup', (req, res) => {
-//   const newappuser = new Appuser({
-//     username: 'test user 0',
-//     password: 'password',
-//   });
-
-//   newappuser
-//     .save()
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
-
-
-// //get one user
-// app.get('/get-user', (req, res)=>{
-//   Appuser.findById('60901ef77049ad3cbce5d8ef')
-//     .then((result) => {
-//       res.send(result)
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+//get one user
+app.get('/get-user/:id', (req, res)=>{
+  Appuser.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //routes
 
@@ -100,7 +87,108 @@ app.post('/signup', (req, res) => {
     });
 });
 
+// get all apps
+app.get('/all-apps', (req, res) => {
+  Appitem.find()
+    .sort({ createdAt: -1 }) //sort by descending order (newest to oldest in this case)
+    .then((result) => {
+      res.header('Content-Type', 'application/json');
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+// get one app
+app.get('/get-app/:id', (req, res)=>{
+  Appitem.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
+//get all books
+app.get('/all-books', (req, res) => {
+  Bookitem.find()
+    .sort({ createdAt: -1 }) //sort by descending order (newest to oldest in this case)
+    .then((result) => {
+      res.header('Content-Type', 'application/json');
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+// get one book
+app.get('/get-book/:id', (req, res)=>{
+  Bookitem.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//get all games
+app.get('/all-games', (req, res) => {
+  Gameitem.find()
+    .sort({ createdAt: -1 }) //sort by descending order (newest to oldest in this case)
+    .then((result) => {
+      res.header('Content-Type', 'application/json');
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+//get one game
+app.get('/get-game/:id', (req, res)=>{
+  Gameitem.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//get all movies
+app.get('/all-movies', (req, res) => {
+  Movieitem.find()
+    .sort({ createdAt: -1 }) //sort by descending order (newest to oldest in this case)
+    .then((result) => {
+      res.header('Content-Type', 'application/json');
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+//get one movie
+app.get('/get-movie/:id', (req, res)=>{
+  Movieitem.findById(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+//update app
+app.get('/update-app/:id', (req, res)=>{
+  Appitem.findByIdAndUpdate(req.params.id)
+    .then((result) => {
+      res.send(result)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 //404
 app.use((req, res) => {
